@@ -1,6 +1,8 @@
 @{
-    ViewData["Title"] = "Details";
+    Layout = "_Layout";
 }
+
+@using CretaceousClient.Models;
 
 <h1>Animal Info:</h1>
 <ul>
@@ -12,15 +14,7 @@
 </ul>
 <br>
 
-<a href="/Animals/Edit/@(Model.AnimalId)">
-    <p>Edit</p>
-</a>
-<br>
-
-<a href="/Animals">
-    <p>Return</p>
-</a>
-
-<a href="/Animals/Delete/@(Model.AnimalId)">
-    <p>DELETE ANIMAL</p>
-</a>
+<p>@Html.ActionLink("Back to animals", "Index", "Animals")</p>
+<p>@Html.ActionLink("Edit Animal", "Edit", new { id = Model.AnimalId })</p>
+<p>@Html.ActionLink("Delete Animal", "Delete", new { id = Model.AnimalId })</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

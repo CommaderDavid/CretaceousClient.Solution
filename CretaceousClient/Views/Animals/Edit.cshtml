@@ -1,3 +1,7 @@
+@{
+    Layout = "_Layout";
+}
+
 <h1>Edit Info:</h1>
 <form action="/Animals/Details/@(Model.AnimalId)" method="post">
     <label for="name">Animal's Name</label>
@@ -11,6 +15,4 @@
     <button type="submit">Go!</button>
 </form>
 
-<a href="/Animals/Details/@(Model.AnimalId)">
-    <p>Return to Details</p>
-</a>
+<p>@Html.ActionLink("Return to Details", "Details", "Animals")</p>

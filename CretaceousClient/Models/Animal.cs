@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -15,8 +16,8 @@ namespace CretaceousClient.Models
 
         public static List<Animal> GetAnimals()
         {
-            var apiCallTask = ApiHelper.GetAll();
-            var result = apiCallTask.Result;
+            Task<string> apiCallTask = ApiHelper.GetAll();
+            string result = apiCallTask.Result;
 
             JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
             List<Animal> animalList = JsonConvert.DeserializeObject<List<Animal>>(jsonResponse.ToString());
@@ -26,8 +27,8 @@ namespace CretaceousClient.Models
 
         public static Animal GetDetails(int id)
         {
-            var apiCallTask = ApiHelper.Get(id);
-            var result = apiCallTask.Result;
+            Task<string> apiCallTask = ApiHelper.Get(id);
+            string result = apiCallTask.Result;
 
             JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
             Animal animal = JsonConvert.DeserializeObject<Animal>(jsonResponse.ToString());
@@ -38,18 +39,18 @@ namespace CretaceousClient.Models
         public static void Post(Animal animal)
         {
             string jsonAnimal = JsonConvert.SerializeObject(animal);
-            var apiCallTask = ApiHelper.Post(jsonAnimal);
+            ApiHelper.Post(jsonAnimal);
         }
 
         public static void Put(Animal animal)
         {
             string jsonAnimal = JsonConvert.SerializeObject(animal);
-            var apiCallTask = ApiHelper.Put(animal.AnimalId, jsonAnimal);
+            ApiHelper.Put(animal.AnimalId, jsonAnimal);
         }
 
         public static void Delete(int id)
         {
-            var apiCallTask = ApiHelper.Delete(id);
+            ApiHelper.Delete(id);
         }
     }
 }

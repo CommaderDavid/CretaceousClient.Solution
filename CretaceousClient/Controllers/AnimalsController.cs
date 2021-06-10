@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using CretaceousClient.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CretaceousClient.Controllers
 {
@@ -12,7 +12,7 @@ namespace CretaceousClient.Controllers
     {
         public IActionResult Index()
         {
-            var allAnimals = Animal.GetAnimals();
+            List<Animal> allAnimals = Animal.GetAnimals();
             return View(allAnimals);
         }
 
@@ -23,20 +23,21 @@ namespace CretaceousClient.Controllers
             return RedirectToAction("Index");
         }
 
+        //GET/animals/5
         public IActionResult Details(int id)
         {
-            var animal = Animal.GetDetails(id);
+            Animal animal = Animal.GetDetails(id);
             return View(animal);
         }
 
         public IActionResult Edit(int id)
         {
-            var animal = Animal.GetDetails(id);
+            Animal animal = Animal.GetDetails(id);
             return View(animal);
         }
 
         [HttpPost]
-        public IActionResult Details(int id, Animal animal)
+        public IActionResult Edit(int id, Animal animal)
         {
             animal.AnimalId = id;
             Animal.Put(animal);

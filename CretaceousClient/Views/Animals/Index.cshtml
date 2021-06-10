@@ -30,8 +30,9 @@
             <li>Age: @animal.Age</li>
             <li>Gender: @animal.Gender</li>
         </ul>
-        <p>@Html.ActionLink("Show animal Details", "Details", "Animals")</p>
-        <br>
+        <a href="/Animals/Details/@(animal.AnimalId)">
+            <p>View Details</p>
+        </a>
     }
 </ol>
 <p>@Html.ActionLink("Home", "Details", "Home")</p>

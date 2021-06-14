@@ -1,9 +1,10 @@
 @{
     Layout = "_Layout";
 }
-
+@model CretaceousClient.Models.Animal
 <h1>Edit Info:</h1>
 <form action="/Animals/Details/@(Model.AnimalId)" method="post">
+    @Html.HiddenFor(model => model.AnimalId)
     <label for="name">Animal's Name</label>
     <input id="name" name="name" type="text" value="@(Model.Name)">
     <label for="species">Animal's Species</label>

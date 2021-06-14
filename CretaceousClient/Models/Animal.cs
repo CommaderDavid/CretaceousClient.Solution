@@ -36,21 +36,21 @@ namespace CretaceousClient.Models
             return animal;
         }
 
-        public static void Post(Animal animal)
+        public async static Task Post(Animal animal)
         {
             string jsonAnimal = JsonConvert.SerializeObject(animal);
-            ApiHelper.Post(jsonAnimal);
+            await ApiHelper.Post(jsonAnimal);
         }
 
-        public static void Put(Animal animal)
+        public async static Task Put(Animal animal)
         {
             string jsonAnimal = JsonConvert.SerializeObject(animal);
-            ApiHelper.Put(animal.AnimalId, jsonAnimal);
+            await ApiHelper.Put(animal.AnimalId, jsonAnimal);
         }
 
-        public static void Delete(int id)
+        public async static Task Delete(int id)
         {
-            ApiHelper.Delete(id);
+            await ApiHelper.Delete(id);
         }
     }
 }

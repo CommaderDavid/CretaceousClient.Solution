@@ -17,15 +17,16 @@ namespace CretaceousClient.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(Animal animal)
+        public async Task<IActionResult> Index(Animal animal)
         {
-            Animal.Post(animal);
+            await Animal.Post(animal);
             return RedirectToAction("Index");
         }
 
         //GET/animals/5
         public IActionResult Details(int id)
         {
+            Console.WriteLine($"id = {id}");
             Animal animal = Animal.GetDetails(id);
             return View(animal);
         }
@@ -37,16 +38,17 @@ namespace CretaceousClient.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(int id, Animal animal)
+        // This leads back to details after the edit is sent.
+        public async Task<IActionResult> Details(int id, Animal animal)
         {
             animal.AnimalId = id;
-            Animal.Put(animal);
+            await Animal.Put(animal);
             return RedirectToAction("Details", id);
         }
 
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            Animal.Delete(id);
+            await Animal.Delete(id);
             return RedirectToAction("Index");
         }
     }
